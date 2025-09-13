@@ -1,0 +1,308 @@
+/* Importa uma fonte monoespaçada para um visual técnico */
+
+/* Definição de variáveis de cores para o tema escuro */
+:root {
+  --bg-color: #1a1a1c;
+  --text-color: #e2e2e2;
+  --border-color: #333;
+  --accent-color: #00aaff;
+  --hour-color: #4a90e2;    /* Azul */
+  --minute-color: #50e3c2;  /* Ciano */
+  --second-color: #e35050;  /* Vermelho */
+  --ms-color: #9b9b9b;      /* Cinza */
+}
+
+body {
+  font-family: 'Roboto Mono', monospace;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column; /* Alterado para empilhar relógio e rodapé */
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Container principal do relógio */
+#clock-container {
+  width: 100%;
+  max-width: 800px;
+  padding: 30px;
+  border: 1px solid var(--border-color);
+  border-radius: 15px;
+  background-color: #252528;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+
+header {
+  text-align: center;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+header h1 {
+  margin: 0;
+  color: var(--accent-color);
+  font-weight: 700;
+}
+
+header p {
+  margin: 5px 0 0;
+  font-size: 0.9em;
+  color: #aaa;
+}
+
+/* --- ESTILOS PARA INTUITIVIDADE --- */
+#explanation {
+  font-size: 0.85em;
+  text-align: center;
+  padding: 15px;
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 8px;
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+#explanation strong {
+  color: var(--accent-color);
+  font-weight: 400;
+}
+
+/* Ajustes no display digital */
+.readout {
+  display: flex;
+  justify-content: space-around;
+  background-color: var(--bg-color);
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.readout div {
+  width: 50%;
+}
+
+.readout h3 {
+  margin: 0 0 5px 0;
+  font-size: 0.8em;
+  color: #aaa;
+  text-transform: uppercase;
+}
+
+.readout p {
+  margin: 0;
+  font-size: 1.2em; /* Reduzido para caber mais informação */
+  font-weight: 700;
+}
+
+#ternary-time .unit-label {
+  font-weight: 400;
+  color: #aaa;
+}
+#ternary-time .ternary-value {
+  display: inline-block;
+  min-width: 4ch;
+  text-align: left;
+  color: var(--accent-color);
+}
+#ternary-time .standard-equivalent {
+  font-size: 0.7em;
+  color: #888;
+  font-weight: 300;
+}
+
+#ternary-time {
+  color: var(--accent-color);
+}
+
+/* Display visual com as curvas */
+#visual-display {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Aumentado o espaçamento */
+}
+
+.track {
+  position: relative;
+  width: 100%;
+  height: 60px; /* Amplitude base da onda */
+  display: flex;
+  align-items: center;
+}
+
+.track .label {
+  position: absolute;
+  left: -90px; /* Afastado para dar mais espaço */
+  width: 80px;
+  text-align: right;
+  font-size: 0.9em;
+  color: #aaa;
+}
+
+.track .range {
+  position: absolute;
+  right: -60px;
+  width: 50px;
+  font-size: 0.7em;
+  color: #888;
+  text-align: left;
+}
+.range .peak { position: absolute; top: -25px; }
+.range .trough { position: absolute; bottom: -25px; } /* Ajustado para bottom */
+.range .mid {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: -35px;
+  font-size: 0.9em;
+}
+
+
+.curve {
+  width: 100%;
+  height: 100%;
+}
+
+.curve path {
+  stroke-width: 1px;
+  fill: none;
+  opacity: 0.3;
+}
+
+/* --- ELEMENTOS VISUAIS --- */
+.baseline {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 1px;
+  background-color: var(--border-color);
+  opacity: 0.5;
+}
+
+.connector {
+  position: absolute;
+  width: 1px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Estilo do marcador que se move na curva */
+.marker {
+  position: absolute;
+  width: 24px; /* Aumentado para caber o texto */
+  height: 24px; /* Aumentado para caber o texto */
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px, 0 0 15px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  /* Novo: centraliza o conteúdo (o número) */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 0 3px rgba(0,0,0,0.7);
+}
+
+/* Cores específicas para cada curva e marcador */
+#hours-track .marker { background-color: var(--hour-color); box-shadow: 0 0 10px var(--hour-color), 0 0 15px var(--hour-color); }
+#minutes-track .marker { background-color: var(--minute-color); box-shadow: 0 0 10px var(--minute-color), 0 0 15px var(--minute-color); }
+#seconds-track .marker { background-color: var(--second-color); box-shadow: 0 0 10px var(--second-color), 0 0 15px var(--second-color); }
+#ms-track .marker { background-color: var(--ms-color); box-shadow: 0 0 10px var(--ms-color), 0 0 15px var(--ms-color); }
+
+#hours-track .curve path { stroke: var(--hour-color); }
+#minutes-track .curve path { stroke: var(--minute-color); }
+#seconds-track .curve path { stroke: var(--second-color); }
+#ms-track .curve path { stroke: var(--ms-color); }
+
+/* --- NOVOS ESTILOS PARA O RODAPÉ --- */
+footer {
+  margin-top: 30px;
+  text-align: center;
+}
+
+#toggle-explanation {
+  font-family: 'Roboto Mono', monospace;
+  background-color: var(--accent-color);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.3s ease;
+}
+
+#toggle-explanation:hover {
+  background-color: #0088cc;
+}
+
+#full-explanation {
+  max-width: 800px;
+  margin-top: 20px;
+  text-align: left;
+  line-height: 1.7;
+  background-color: #252528;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  padding: 0 25px; /* Padding é zero inicialmente */
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.7s ease-in-out, padding 0.7s ease-in-out;
+}
+
+#full-explanation.visible {
+  padding: 20px 25px; /* Padding aparece na expansão */
+  max-height: 600px; /* Altura suficiente para o conteúdo */
+}
+
+#full-explanation h3 {
+  color: var(--accent-color);
+  margin-top: 0;
+}
+/* --- FIM DOS ESTILOS DO RODAPÉ --- */
+
+/* Media query para telas menores */
+@media (max-width: 768px) {
+  body {
+    align-items: flex-start;
+    padding: 10px;
+  }
+  #clock-container {
+    padding: 15px;
+  }
+  .track .label, .track .range {
+    display: none;
+  }
+  #readouts {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .readout p {
+    font-size: 1.2em;
+  }
+}
+
+/* Botão de troca de idioma */
+#lang-toggle {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 1000;
+  background-color: #3a3a3d;
+  color: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.9em;
+  cursor: pointer;
+}
+#lang-toggle:hover { background-color: #2c2c2f; }

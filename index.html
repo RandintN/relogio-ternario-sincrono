@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relógio Ternário Síncrono</title>
+  <!-- Performance: resource hints and font stylesheet moved from CSS @import -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="//fonts.googleapis.com">
+  <link rel="dns-prefetch" href="//fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<button id="lang-toggle" aria-label="Mudar idioma">EN</button>
+
+<div id="clock-container">
+  <header>
+    <h1 id="title">Relógio Ternário Síncrono</h1>
+    <p id="subtitle">Uma representação visual do tempo em ternário balanceado</p>
+  </header>
+
+  <div id="explanation">
+    <strong>Como ler:</strong> a metade ascendente da curva (esquerda) mostra o tempo <strong>decorrido</strong> (valores +). A metade descendente (direita) mostra o tempo <strong>restante</strong> (valores -). O pico é o ponto médio, e o vale é o início/fim do ciclo.
+  </div>
+
+  <div id="readouts" class="readout">
+    <div>
+      <h3 id="standard-heading">Horário Padrão</h3>
+      <p id="standard-time">--:--:--.---</p>
+    </div>
+    <div>
+      <h3 id="ternary-heading">Valores Ternários</h3>
+      <p id="ternary-time">H:-- M:-- S:--</p>
+    </div>
+  </div>
+
+  <div id="visual-display">
+    <div class="track" id="hours-track">
+      <span class="label" id="hours-label">Horas</span>
+      <div class="baseline"></div>
+      <div class="curve" id="hours-curve"></div>
+      <div class="connector" id="hours-connector"></div>
+      <div class="marker" id="hours-marker"><span></span></div>
+      <div class="range"><span class="peak">+12</span><span class="mid" id="mid-noon">Meio-dia</span><span class="trough">0</span></div>
+    </div>
+    <div class="track" id="minutes-track">
+      <span class="label" id="minutes-label">Minutos</span>
+      <div class="baseline"></div>
+      <div class="curve" id="minutes-curve"></div>
+      <div class="connector" id="minutes-connector"></div>
+      <div class="marker" id="minutes-marker"><span></span></div>
+      <div class="range"><span class="peak">+30</span><span class="mid">:30</span><span class="trough">0</span></div>
+    </div>
+    <div class="track" id="seconds-track">
+      <span class="label" id="seconds-label">Segundos</span>
+      <div class="baseline"></div>
+      <div class="curve" id="seconds-curve"></div>
+      <div class="connector" id="seconds-connector"></div>
+      <div class="marker" id="seconds-marker"><span></span></div>
+      <div class="range"><span class="peak">+30</span><span class="mid">:30</span><span class="trough">0</span></div>
+    </div>
+    <div class="track" id="ms-track">
+      <span class="label" id="ms-label">Miliseg.</span>
+      <div class="baseline"></div>
+      <div class="curve" id="ms-curve"></div>
+      <div class="connector" id="ms-connector"></div>
+      <div class="marker" id="ms-marker"></div>
+      <div class="range"><span class="peak">+500</span><span class="mid">.500</span><span class="trough">0</span></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <button id="toggle-explanation">Entenda o Conceito</button>
+  <div id="full-explanation">
+    <h3>A Filosofia do Relógio Síncrono</h3>
+    <p>Um dia não é apenas uma contagem linear de 0 a 24. Ele possui um fluxo natural, um ritmo: o tempo "cresce" da meia-noite até seu pico ao meio-dia, e então "diminui", retornando ao ponto inicial. É como a maré que sobe e desce, ou o ato de inspirar e expirar.</p>
+    <p>Este relógio visualiza esse ciclo usando o <strong>sistema ternário balanceado</strong>.</p>
+    <ul>
+      <li><strong>Valores Positivos (+):</strong> Representam o tempo que <strong>já passou</strong> desde o início do ciclo (meia-noite, minuto :00). É a fase de "inspiração" do tempo, e a curva sobe.</li>
+      <li><strong>Valores Negativos (-):</strong> Representam o tempo que <strong>falta</strong> para o ciclo terminar. É a fase de "expiração", e a curva desce.</li>
+      <li><strong>Zero (0):</strong> É o ponto de transição, o início e o fim de cada ciclo.</li>
+    </ul>
+    <p><strong>Exemplo Prático:</strong> 21:00 (9 da noite) é interpretado como "faltam 3 horas para a meia-noite", sendo representado como <strong>-3h</strong>. Da mesma forma, 45 segundos é visto como "faltam 15 segundos para o próximo minuto", tornando-se <strong>-15s</strong>. Em contrapartida, 10:00 da manhã é simplesmente <strong>+10h</strong>.</p>
+    <p>O nome <strong>Síncrono</strong> (Seno + Cronômetro) vem das curvas senoidais, que são a representação matemática perfeita desse fluxo e refluxo, tornando a experiência de ver o tempo passar mais intuitiva e orgânica.</p>
+  </div>
+</footer>
+
+<script src="js/main.js" defer></script>
+</body>
+</html>
+
