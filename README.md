@@ -8,7 +8,7 @@ Este projeto visualiza o tempo usando uma perspectiva ternária balanceada com o
 
 ## English
 
-- Live view: open index.html in a browser.
+- 👉 [Live view](https://robsoncassiano.software/tools/balanced-ternary-clock)
 - Language: use the EN/PT toggle button at the top-left.
 
 ### Understand the Concept
@@ -40,7 +40,7 @@ This project is licensed under the MIT License — see the LICENSE file for deta
 
 ## Português
 
-- Visualização: abra o arquivo index.html no navegador.
+- 👉 [Visualização](https://robsoncassiano.software/tools/balanced-ternary-clock)
 - Idioma: use o botão PT/EN no canto superior esquerdo.
 
 ### Entenda o Conceito
