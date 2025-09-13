@@ -23,6 +23,13 @@
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#ffffff">
 
+  <!-- Inline critical CSS to keep GitHub link fixed on production even if external CSS is altered/not loaded -->
+  <style>
+    /* critical: GitHub link position and appearance */
+    #github-link{position:fixed;top:12px;right:12px;z-index:1000;color:#e2e2e2;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:6px;border:1px solid #333;background-color:#3a3a3d}
+    #github-link:hover{background-color:#2c2c2f;color:#fff}
+  </style>
+
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
