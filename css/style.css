@@ -311,3 +311,25 @@ footer {
   cursor: pointer;
 }
 #lang-toggle:hover { background-color: #2c2c2f; }
+
+/* Link do GitHub no canto superior direito */
+#github-link {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 1000;
+  color: #e2e2e2; /* usa currentColor no SVG */
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background-color: #3a3a3d;
+}
+#github-link:hover {
+  background-color: #2c2c2f;
+  color: #fff;
+}
