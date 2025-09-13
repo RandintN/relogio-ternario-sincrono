@@ -314,9 +314,9 @@ footer {
 
 /* Link do GitHub no canto superior direito */
 #github-link {
-  position: fixed;
-  top: 12px;
-  right: 12px;
+  position: fixed !important;
+  top: 12px !important;
+  right: 12px !important;
   z-index: 1000;
   color: #e2e2e2; /* usa currentColor no SVG */
   text-decoration: none;
