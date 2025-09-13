@@ -1,3 +1,6 @@
+// Copyright (c) 2025 Robson Cassiano
+// Licensed under the MIT License. See the LICENSE file in the project root for details.
+
 // --- LÓGICA DO RELÓGIO ---
 
 // Seletores de elementos do DOM para fácil acesso
@@ -213,7 +216,6 @@ function updateClock() {
   const ternaryH = getTernaryHours(h);
   const ternaryM = getTernarySixty(m);
   const ternaryS = getTernarySixty(s);
-  const ternaryMS = getTernaryMillis(ms);
 
   // --- Atualização dos Visores Digitais ---
   standardTimeEl.textContent =
